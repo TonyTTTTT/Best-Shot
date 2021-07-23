@@ -12,3 +12,4 @@ $ pip install -r requirement.txt
 $ cd /The/Path/of/BestShot
 $ python manage.py runserver
 ```
+- Then go to url: "localhost:8000/main", you will see the homepage of BestShot

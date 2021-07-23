@@ -22,7 +22,6 @@ def main(request):
     img.cmpScore = 9.7
     img.like = 52
     img.save()'''
-
     for item in Classification.objects.all():
         if not item.imgs.exists():
             print(item.name,"been delete")

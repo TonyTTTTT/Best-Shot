@@ -1,0 +1,7 @@
+# Don't use different edit tool to edit .gitignore, or it will fail to ignore file
+
+# Pycharm's file
+.idea
+
+# Python's cache
+*__pycache__

@@ -9,3 +9,7 @@
 
 # Django's cache & database
 *migrations
+*.DS_Store
+
+# Media file
+media

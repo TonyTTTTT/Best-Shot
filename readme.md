@@ -3,8 +3,12 @@
 - The novelty compare to other Social Media is that we embed an Convolutional Neural Network(CNN) in it to score each picture user post.
 
 ## How to run
-- This website is fully develop in Python, so first you need to install all the requirement Python packages in "requirement.txt".
-``` sh
-$ pip install requirement.txt
+- This project is mainly developed in Python, so first you need to install all the requirement Python packages in "requirement.txt".
+```sh
+$ pip install -r requirement.txt
 ```
-- This website is fully develop depend on the Python Web framwork Django, so first you need to install all the requirement Python packages.
+- We use Python Web framwork Django to build up this website, so after all requirement installed, just run the Django command to start the website.
+```sh
+$ cd /The/Path/of/BestShot
+$ python manage.py runserver
+```

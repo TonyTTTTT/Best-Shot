@@ -4,7 +4,7 @@
 
 ## How to run
 - This website is fully develop in Python, so first you need to install all the requirement Python packages in "requirement.txt".
----
+``` sh
 $ pip install requirement.txt
----
+```
 - This website is fully develop depend on the Python Web framwork Django, so first you need to install all the requirement Python packages.

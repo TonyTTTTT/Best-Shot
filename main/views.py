@@ -3,10 +3,10 @@ import time
 
 from django.contrib import auth
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 # import 其他py檔的Functions or Class以在此py檔中呼叫
 from main.models import User, Img, Comment, Classification, UserProfile
-# from .otherFunctions.visionAPI import getLabel
+from .otherFunctions.visionAPI import getLabel
 from .otherFunctions.score_mobilenet_input import assessPicture
 from django import db
 
@@ -22,10 +22,11 @@ def main(request):
     img.cmpScore = 9.7
     img.like = 52
     img.save()'''
-    # for item in Classification.objects.all():
-    #     if not item.imgs.exists():
-    #         print(item.name,"been delete")
-    #         item.delete()
+
+    for item in Classification.objects.all():
+        if not item.imgs.exists():
+            print(item.name,"been delete")
+            item.delete()
     # 判斷是否有使用者登入，若登入取得使用者資訊
     if request.user.is_authenticated:
         username = request.user.username
@@ -44,18 +45,18 @@ def main(request):
                   description=description)
         img.save()
         img.cmpScore = assessPicture(str(img.image))  # 此處會呼叫另外一個py檔中之function，以進行評分的動作
-        # img.label = getLabel(str(img.image))  # 此處會呼叫另外一個py檔中之function，以取得此圖像之分類label的動作
+        img.label = getLabel(str(img.image))  # 此處會呼叫另外一個py檔中之function，以取得此圖像之分類label的動作
         img.save()
 
-        # for label in img.label:  # 此for迴圈為檢查此圖片之label是否已存在在database之中若無則在classification Entity中
-        #                          # 創建新的label tuple
-        #     if not Classification.objects.filter(name=label).exists():
-        #         print("new class create")
-        #         tagClass = Classification(name=label)
-        #         tagClass.save()
-        #     else:
-        #         tagClass = Classification.objects.filter(name=label)[0]
-        #     img.tagClass.add(tagClass)  # 建立Classification Object 與 Img Object 間的relation
+        for label in img.label:  # 此for迴圈為檢查此圖片之label是否已存在在database之中若無則在classification Entity中
+                                 # 創建新的label tuple
+            if not Classification.objects.filter(name=label).exists():
+                print("new class create")
+                tagClass = Classification(name=label)
+                tagClass.save()
+            else:
+                tagClass = Classification.objects.filter(name=label)[0]
+            img.tagClass.add(tagClass)  # 建立Classification Object 與 Img Object 間的relation
         # attrubute設定完成
         # 上傳照片後跳轉至照片資訊頁
         db.connections.close_all()
@@ -68,11 +69,11 @@ def main(request):
     classList = []
     userList = []
     all_user = User.objects.all()
-    # all_class = Classification.objects.all()
+    all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    # for item in all_class:
-    #     classList.append(item.name)
+    for item in all_class:
+        classList.append(item.name)
     context = {
         'imgListOrderByCmpScore': imgListOrderByCmpScore,
         'imgListOrderByLike': imgListOrderByLike,
@@ -90,11 +91,11 @@ def rank(request):
     classList = []
     userList = []
     all_user = User.objects.all()
-    # all_class = Classification.objects.all()
+    all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    # for item in all_class:
-    #     classList.append(item.name)
+    for item in all_class:
+        classList.append(item.name)
 
     context = {
         "scoreType": "computer",
@@ -156,11 +157,11 @@ def blog(request, user):
     classList = []
     userList = []
     all_user = User.objects.all()
-    # all_class = Classification.objects.all()
+    all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    # for item in all_class:
-    #     classList.append(item.name)
+    for item in all_class:
+        classList.append(item.name)
 
     context = {
         'user': user,
@@ -258,11 +259,11 @@ def imgDetail(request, user, imgID):
     classList = []
     userList = []
     all_user = User.objects.all()
-    # all_class = Classification.objects.all()
+    all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    # for item in all_class:
-    #     classList.append(item.name)
+    for item in all_class:
+        classList.append(item.name)
 
     context = {
         'currentImg': img,
@@ -389,21 +390,21 @@ def search(request):
     print("keyword: " + keyword)
     search_results = None
     result_class = None
-    # if keyword != '':
-        # if Classification.objects.filter(name__exact=keyword).exists():
-        #     # print(Classification.objects.filter(name__icontains=keyword))
-        #     result_class = Classification.objects.filter(name__exact=keyword)[0]
-        #     search_results = result_class.imgs.order_by('-cmpScore')
-        #     print(search_results)
+    if keyword != '':
+        if Classification.objects.filter(name__exact=keyword).exists():
+            # print(Classification.objects.filter(name__icontains=keyword))
+            result_class = Classification.objects.filter(name__exact=keyword)[0]
+            search_results = result_class.imgs.order_by('-cmpScore')
+            print(search_results)
 
     classList = []
     userList = []
     all_user = User.objects.all()
-    # all_class = Classification.objects.all()
+    all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    # for item in all_class:
-    #     classList.append(item.name)
+    for item in all_class:
+        classList.append(item.name)
 
     context ={
         'search_result': search_results,

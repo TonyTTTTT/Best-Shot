@@ -3,7 +3,7 @@
 - The novelty compare to other Social Media is that we embed an Convolutional Neural Network(CNN) in it to score each picture user post.
 
 ## How to run
-- Highly recommend to create a Python's virtual environment for this project, avoid from contaminate your native Python's environment.
+- (Optional)Highly recommend to create a Python's virtual environment for this project, avoid from contaminate your native Python's environment.
 ```sh
 # install the packages for create virtual environment
 pip3 install virtualenv

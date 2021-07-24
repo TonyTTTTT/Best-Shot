@@ -68,11 +68,11 @@ def main(request):
     classList = []
     userList = []
     all_user = User.objects.all()
-    all_class = Classification.objects.all()
+    # all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    for item in all_class:
-        classList.append(item.name)
+    # for item in all_class:
+    #     classList.append(item.name)
     context = {
         'imgListOrderByCmpScore': imgListOrderByCmpScore,
         'imgListOrderByLike': imgListOrderByLike,
@@ -90,11 +90,11 @@ def rank(request):
     classList = []
     userList = []
     all_user = User.objects.all()
-    all_class = Classification.objects.all()
+    # all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    for item in all_class:
-        classList.append(item.name)
+    # for item in all_class:
+    #     classList.append(item.name)
 
     context = {
         "scoreType": "computer",
@@ -156,11 +156,11 @@ def blog(request, user):
     classList = []
     userList = []
     all_user = User.objects.all()
-    all_class = Classification.objects.all()
+    # all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    for item in all_class:
-        classList.append(item.name)
+    # for item in all_class:
+    #     classList.append(item.name)
 
     context = {
         'user': user,
@@ -258,11 +258,11 @@ def imgDetail(request, user, imgID):
     classList = []
     userList = []
     all_user = User.objects.all()
-    all_class = Classification.objects.all()
+    # all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    for item in all_class:
-        classList.append(item.name)
+    # for item in all_class:
+    #     classList.append(item.name)
 
     context = {
         'currentImg': img,
@@ -389,21 +389,21 @@ def search(request):
     print("keyword: " + keyword)
     search_results = None
     result_class = None
-    if keyword != '':
-        if Classification.objects.filter(name__exact=keyword).exists():
-            # print(Classification.objects.filter(name__icontains=keyword))
-            result_class = Classification.objects.filter(name__exact=keyword)[0]
-            search_results = result_class.imgs.order_by('-cmpScore')
-            print(search_results)
+    # if keyword != '':
+        # if Classification.objects.filter(name__exact=keyword).exists():
+        #     # print(Classification.objects.filter(name__icontains=keyword))
+        #     result_class = Classification.objects.filter(name__exact=keyword)[0]
+        #     search_results = result_class.imgs.order_by('-cmpScore')
+        #     print(search_results)
 
     classList = []
     userList = []
     all_user = User.objects.all()
-    all_class = Classification.objects.all()
+    # all_class = Classification.objects.all()
     for item in all_user:
         userList.append(item.username)
-    for item in all_class:
-        classList.append(item.name)
+    # for item in all_class:
+    #     classList.append(item.name)
 
     context ={
         'search_result': search_results,

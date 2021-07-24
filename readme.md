@@ -25,6 +25,8 @@ $ pip install -r requirements.txt
 ```
 - We use Python Web framwork Django to build up this website, so after all requirement installed, just run the Django command to start the website.
 ```sh
+$ python manage.py makemigrations
+$ python manage.py migrate
 $ python manage.py runserver
 ```
 - Then go to url: "http://127.0.0.1:8000/main/" in your browser, you will see the homepage of BestShot.

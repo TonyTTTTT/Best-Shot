@@ -10,13 +10,13 @@ $ pip3 install virtualenv
 
 # create virtual environment
 $ cd Where/You/Want/To/Build/VirtualEnv
-$ python -m virtualenv BestShot
+$ python -m virtualenv BestShotEnv
 
 # activate virtual environment
 # Windows
-$ .\BestShot\Scripts\activate
+$ .\BestShotEnv\Scripts\activate
 # Linux
-$ ./BestShot/Scripts/acitvate
+$ ./BestShotEnv/Scripts/acitvate
 ```
 - This project is mainly developed in Python, so first you need to install all the requirement Python packages in "requirement.txt".
 ```sh

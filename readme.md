@@ -7,6 +7,8 @@
 ```sh
 # install the packages for create virtual environment
 pip3 install virtualenv
+
+# create virtual environment
 cd Where/You/Want/To/Build/VirtualEnv
 virtualenv BestShot
 ```

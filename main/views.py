@@ -22,10 +22,10 @@ def main(request):
     img.cmpScore = 9.7
     img.like = 52
     img.save()'''
-    for item in Classification.objects.all():
-        if not item.imgs.exists():
-            print(item.name,"been delete")
-            item.delete()
+    # for item in Classification.objects.all():
+    #     if not item.imgs.exists():
+    #         print(item.name,"been delete")
+    #         item.delete()
     # 判斷是否有使用者登入，若登入取得使用者資訊
     if request.user.is_authenticated:
         username = request.user.username

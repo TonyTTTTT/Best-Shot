@@ -8,12 +8,12 @@
 *.pyc
 
 # Django's cache & database
-*migrations
+main/migrations
 *.DS_Store
 database
 mydatabase
 real_use
-
+shell
 
 # Media file
 media

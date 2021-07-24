@@ -3,7 +3,7 @@ import time
 
 from django.contrib import auth
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 # import 其他py檔的Functions or Class以在此py檔中呼叫
 from main.models import User, Img, Comment, Classification, UserProfile
 from .otherFunctions.visionAPI import getLabel

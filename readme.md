@@ -10,7 +10,7 @@ $ pip3 install virtualenv
 
 # create virtual environment
 $ cd Where/You/Want/To/Build/VirtualEnv
-$ virtualenv BestShot
+$ python -m virtualenv BestShot
 
 # activate virtual environment
 # Windows
@@ -21,7 +21,7 @@ $ ./BestShot/Scripts/acitvate
 - This project is mainly developed in Python, so first you need to install all the requirement Python packages in "requirement.txt".
 ```sh
 $ cd /The/Path/of/BestShot
-$ pip3 install -r requirement.txt
+$ pip3 install -r requirements.txt
 ```
 - We use Python Web framwork Django to build up this website, so after all requirement installed, just run the Django command to start the website.
 ```sh

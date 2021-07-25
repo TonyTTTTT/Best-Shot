@@ -1,3 +1,6 @@
+# Recorded in 2021/7/25
+# Keras and tensorflow will conflict and crash in latest version
+# Karas, tensorflow, numpy have some dependency issue
 Django==3.2.5
 Keras==2.4.3
 numpy==1.18.2

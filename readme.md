@@ -25,6 +25,9 @@ This project is mainly developed in Python, so first you need to install all the
 ```sh
 $ cd /The/Path/of/BestShot
 $ pip install -r requirements.txt
+
+# Due to the conflict between Keras and Tensorflow, you'll need this command to reinstall Tensorflow
+$ pip install tensorflow --upgrade --force-reinstall
 ```
 
 ### Django command to run the website

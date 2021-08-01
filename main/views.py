@@ -9,6 +9,7 @@ from main.models import User, Img, Comment, Classification, UserProfile
 from .otherFunctions.visionAPI import getLabel
 from .otherFunctions.score_mobilenet_input import assessPicture
 from django import db
+from .otherFunctions.classPredictor import ClassPredictor
 
 
 # Create your views here.
@@ -45,18 +46,21 @@ def main(request):
                   description=description)
         img.save()
         img.cmpScore = assessPicture(str(img.image))  # 此處會呼叫另外一個py檔中之function，以進行評分的動作
+        class_predictor = ClassPredictor(str(img.image))
+        img.label = class_predictor.getTag()
+        print(img.label)
         # img.label = getLabel(str(img.image))  # 此處會呼叫另外一個py檔中之function，以取得此圖像之分類label的動作
         img.save()
 
-        # for label in img.label:  # 此for迴圈為檢查此圖片之label是否已存在在database之中若無則在classification Entity中
-        #                          # 創建新的label tuple
-        #     if not Classification.objects.filter(name=label).exists():
-        #         print("new class create")
-        #         tagClass = Classification(name=label)
-        #         tagClass.save()
-        #     else:
-        #         tagClass = Classification.objects.filter(name=label)[0]
-        #     img.tagClass.add(tagClass)  # 建立Classification Object 與 Img Object 間的relation
+        for label in img.label:  # 此for迴圈為檢查此圖片之label是否已存在在database之中若無則在classification Entity中
+                                 # 創建新的label tuple
+            if not Classification.objects.filter(name=label).exists():
+                print("new class create")
+                tagClass = Classification(name=label)
+                tagClass.save()
+            else:
+                tagClass = Classification.objects.filter(name=label)[0]
+            img.tagClass.add(tagClass)  # 建立Classification Object 與 Img Object 間的relation
         # attrubute設定完成
         # 上傳照片後跳轉至照片資訊頁
         db.connections.close_all()

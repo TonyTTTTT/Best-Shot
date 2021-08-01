@@ -35,9 +35,9 @@ class ClassPredictor:
         self.predictor = Predictor().to(device)
         self.scripted_predictor = torch.jit.script(self.predictor).to(device)
         self.img = read_image(str(Path('media') / img_path))
-        img = T.ToPILImage()(self.img.to('cpu'))
-        plt.imshow(np.asarray(img))
-        plt.show()
+        # img = T.ToPILImage()(self.img.to('cpu'))
+        # plt.imshow(np.asarray(img))
+        # plt.show()
         self.img = torch.unsqueeze(self.img, 0).to(device)
 
     def getTag(self):

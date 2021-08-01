@@ -44,7 +44,7 @@ class ClassPredictor:
         self.res = self.predictor(self.img)
         self.res_scripted = self.scripted_predictor(self.img)
 
-        with open(Path('media') / 'imagenet_class_index.json', 'r') as labels_file:
+        with open(Path('main/otherFunctions/assets') / 'imagenet_class_index.json', 'r') as labels_file:
             labels = json.load(labels_file)
 
         for i, (pred, pred_scripted) in enumerate(zip(self.res, self.res_scripted)):

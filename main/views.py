@@ -148,7 +148,7 @@ def ajax_addImg(request):
         "imgList": imgList
     }
 
-    return render('rank/result.html', context)
+    return render(request, 'rank/result.html', context)
 
 
 def blog(request, user):

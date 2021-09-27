@@ -40,13 +40,16 @@ sqlparse==0.4.1
 tensorboard==2.5.0
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.0
-tensorflow==2.5.0
-tensorflow-estimator==2.5.0
 termcolor==1.1.0
 typing-extensions==3.7.4.3
 urllib3==1.26.6
 Werkzeug==2.0.1
 wrapt==1.12.1
+
+# tensorflow
+#-r requirements-tensorflow.txt
+tensorflow==2.5.0
+tensorflow-estimator==2.5.0
 
 # torch
 -r requirements-torch.txt

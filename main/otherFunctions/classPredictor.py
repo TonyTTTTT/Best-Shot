@@ -27,8 +27,7 @@ class Predictor(nn.Module):
         with torch.no_grad():
             x = self.transforms(x)
             y_pred = self.resnet50(x)
-            return y_pred.argmax(dim=1)
-
+            return y_pred.argsort(dim=1, descending=True)[0, :5]
 
 class ClassPredictor:
     def __init__(self, img_path):
@@ -45,16 +44,18 @@ class ClassPredictor:
         self.res_scripted = self.scripted_predictor(self.img)
 
         with open(Path('main/otherFunctions/assets') / 'imagenet_class_index.json', 'r') as labels_file:
+        # with open('assets/imagenet_class_index.json', 'r') as labels_file:
             labels = json.load(labels_file)
 
+        res = []
         for i, (pred, pred_scripted) in enumerate(zip(self.res, self.res_scripted)):
             assert pred == pred_scripted
+            res.append(labels[str(pred.item())][1])
             print(f"class Prediction for img: {labels[str(pred.item())][1]}")
-
-        return [labels[str(pred.item())][1]]
+        return res
 
 
 if __name__ == '__main__':
-    class_predictor = ClassPredictor('dog3.jpg')
+    class_predictor = ClassPredictor('dog1.jpg')
     tag = class_predictor.getTag()
 

@@ -12,22 +12,25 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 
 class Predictor(nn.Module):
-
     def __init__(self):
         super().__init__()
         self.resnet50 = resnet50(pretrained=True, progress=True).eval()
         self.transforms = nn.Sequential(
-            T.Resize([256, ]),  # We use single int value inside a list due to torchscript type restrictions
+            T.Resize([224,]),  # We use single int value inside a list due to torchscript type restrictions
             T.CenterCrop(224),
             T.ConvertImageDtype(torch.float),
             T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         )
+        self.activation = nn.Sigmoid()
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         with torch.no_grad():
             x = self.transforms(x)
             y_pred = self.resnet50(x)
+            y_pred = self.activation(y_pred)
+            y_sort = y_pred.sort(dim=1, descending=True)
             return y_pred.argsort(dim=1, descending=True)[0, :5]
+
 
 class ClassPredictor:
     def __init__(self, img_path):
@@ -56,6 +59,6 @@ class ClassPredictor:
 
 
 if __name__ == '__main__':
-    class_predictor = ClassPredictor('dog1.jpg')
+    class_predictor = ClassPredictor('2021100715584966.jpg')
     tag = class_predictor.getTag()
 

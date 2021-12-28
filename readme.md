@@ -17,7 +17,7 @@ $ python -m virtualenv BestShotEnv
 # Windows
 $ .\BestShotEnv\Scripts\activate
 # Linux
-$ ./BestShotEnv/Scripts/acitvate
+$ source ./BestShotEnv/bin/acitvate
 ```
 
 ### Install Python packages
